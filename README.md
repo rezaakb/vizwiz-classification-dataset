@@ -33,10 +33,10 @@ $ pip install timm
 ```
 
 ## Evaluation
-After downloading the dataset, you can use `eval.py` code to evaluate your model. Please make sure that you set `IMAGE_PATH` (e.g. `dataset/images`) and `ANN_PATH` (e.g. `dataset/annotations`) correctly. 
+After downloading the dataset, you can use `eval.py` code to evaluate your model. Please make sure that you set `IMAGE_PATH` (e.g. `dataset/images`), `ANN_PATH` (e.g. `dataset/annotations`), and MODEL_NAME (e.g. vgg19). 
 
 ```
-$ python eval.py -m vgg19 -i IMAGE_PATH -a ANN_PATH
+$ python eval.py -m MODEL_NAME -i IMAGE_PATH -a ANN_PATH
 ```
 
 ## Citation
