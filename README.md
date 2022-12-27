@@ -12,7 +12,7 @@ Reza Akbarian Bafghi, and Danna Gurari. arXiv, 2023.](#)
 
 ## Dataset download
 
-Before you can use our API, you must download the dataset. Links to download the images and annotations are available [here](https://vizwiz.org/tasks-and-datasets/object-localization/).
+Before you can use our API, you must download the dataset. Links to download the images and annotations are available [here](#).
 
 Alternatively, you can run the following series of commands. This will create a directory `dataset` with all the files in your current directory.
 ```
