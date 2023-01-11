@@ -16,7 +16,7 @@ Reza Akbarian Bafghi, and Danna Gurari. arXiv, 2023.](#)
 
 Before you can use our API, you must download the dataset. Links to download the images and annotations are available [here](#).
 
-Alternatively, you can run this shell script. This will create a directory `dataset` with all the files in your current directory.
+Alternatively, you can run this shell script. This will create a directory `dataset` with all the files in your current directory. This may take a while.
 ```
 $ sh download_dataset.sh
 ```
