@@ -14,16 +14,9 @@ Reza Akbarian Bafghi, and Danna Gurari. arXiv, 2023.](#)
 
 Before you can use our API, you must download the dataset. Links to download the images and annotations are available [here](#).
 
-Alternatively, you can run the following series of commands. This will create a directory `dataset` with all the files in your current directory.
+Alternatively, you can run this shell script. This will create a directory `dataset` with all the files in your current directory.
 ```
-$ mkdir -p dataset/images dataset/annotations
-$ cd dataset
-$ wget https://vizwiz.cs.colorado.edu/VizWiz_final/images/train.zip \
-       https://vizwiz.cs.colorado.edu/VizWiz_final/images/val.zip \
-       https://vizwiz.cs.colorado.edu/VizWiz_final/images/test.zip \
-       X/annotations.json
-$ unzip -o test.zip val.zip train.zip -d images
-$ rm test.zip val.zip train.zip
+$ sh download_dataset.sh
 ```
 
 ## Installation
