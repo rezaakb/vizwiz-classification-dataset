@@ -18,11 +18,12 @@ Alternatively, you can run the following series of commands. This will create a 
 ```
 $ mkdir -p dataset/images dataset/annotations
 $ cd dataset
-$ wget X/test.zip \
-       X/annotations.zip
-$ unzip -o test.zip -d images
-$ unzip -o annotations.zip -d annotations
-$ rm test.zip annotations.zip
+$ wget https://vizwiz.cs.colorado.edu/VizWiz_final/images/train.zip \
+       https://vizwiz.cs.colorado.edu/VizWiz_final/images/val.zip \
+       https://vizwiz.cs.colorado.edu/VizWiz_final/images/test.zip \
+       X/annotations.json
+$ unzip -o test.zip val.zip train.zip -d images
+$ rm test.zip val.zip train.zip
 ```
 
 ## Installation
