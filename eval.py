@@ -20,50 +20,25 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', '--ann_path', default='dataset/annotations.json')
     parser.add_argument('-i', '--images_path', default='dataset/images')
+    parser.add_argument('-p', '--prediction_path', default='prediction')
     parser.add_argument('-m', '--model_name', default='vgg19')
     args = parser.parse_args()
     
-    in_to_vizwiz = json.load(open(os.path.join(args.ann_path,'IN_to_VizWiz.json')))
-    indices_in_1k = list(map(int, in_to_vizwiz.keys()))
-
-    flaws_dict = {'OBS': 0,
-                  'DRK': 1,        
-                  'BLR': 2,
-                  'BRT': 3,
-                  'ROT': 4,
-                  'FRM': 5,
-                  'NON': 6}
     
+    annotations = json.load(open(args.ann_path))    
+    indices_in_1k = [d['id'] for d in annotations['categories']]
 
     test_transform = transforms.Compose([
         transforms.Resize(256),
         transforms.CenterCrop(224),
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406],
-                             std=[0.229, 0.224, 0.225])
+                              std=[0.229, 0.224, 0.225])
         ])       
 
-
     class VizWizClassification(Dataset):
-        def __init__(self, transform=None):
-
-            ann = json.load(open(args.ann_path))
-
-            all_images = list(ann.keys())
-
-            self.labels = torch.zeros((len(all_images),200))
-            self.images = []
-            self.flaws = torch.zeros((len(all_images),7)).to(torch.bool)
-
-            for j, image_id in enumerate(all_images):
-                self.images.append(os.path.join(args.images_path,image_id))
-                for i in ann[image_id]['labels']:
-                    self.labels[j,in_to_vizwiz[str(i)]]=1
-                if ann[image_id]['flaws'] is not None:
-                    for key,value in ann[image_id]['flaws'].items():
-                        if key!='OTH':
-                            self.flaws[j,flaws_dict[key]]=value
-
+        def __init__(self, annotations, transform=None):
+            self.images = [os.path.join(images_path,str(path)) for path in annotations['images']]
             self.transform = transform
 
         def __len__(self):
@@ -71,19 +46,13 @@ def main():
 
         def __getitem__(self, idx):
             image = Image.open(self.images[idx]).convert('RGB')
-            label = self.labels[idx]
-            flaws = self.flaws[idx]
             if self.transform:
                 image = self.transform(image)
+            return image, self.images[idx].split("/")[2]
 
-            return image, label, flaws
+    dataset = VizWizClassification(annotations,test_transform)
+    vizwiz_loader = torch.utils.data.DataLoader(dataset,batch_size=batch_size, shuffle=False)
 
-
-
-
-    dataset = VizWizClassification(test_transform)
-
-    vizwiz_loader = torch.utils.data.DataLoader(dataset,batch_size=64, shuffle=False)
     
     print('Dataset is loaded.')
     
@@ -121,19 +90,20 @@ def main():
     model.eval()
     
     print('Model is loaded.')
-    print('Training started.')
+    print('Testing started.')
     
-    results = train(model, vizwiz_loader)
+    results = []
+    
+    with torch.no_grad():
+        for images, images_path in vizwiz_loader:
+            images = images.to(device)
+            outputs = model(images)[:,indices_in_1k]
+            pred = list(outputs.data.max(1)[1].cpu())
+            results.extend([(images_path[i],indices_in_1k[pred[i]]) for i in range(len(pred))])
+            
+    file_path = os.path.join(args.prediction_path, datetime.now().strftime("prediction-%m-%d-%Y-%H:%M:%S.json"))
+    with open(file_path, 'w') as outfile:
+        json.dump(results, outfile)
 
-    print('The accuracy of',args.model_name,'on VizWiz-Classification =============')
-
-    types = ['Obscured', 'Dark', 'Blur', 'Bright', 'Rotated', 'Framing', 'Clean Images', 'Corrupted Images', 'All Images']
-
-    for i in range(8):
-        if i!=7:
-            print(types[i],'->',round(100*acc[i], 4))
-        else:
-            print(types[i],'->',round(100*np.mean(acc[0:6]),4))
-        
 if __name__ == '__main__':
     main()
