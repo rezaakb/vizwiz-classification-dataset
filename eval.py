@@ -18,7 +18,7 @@ import timm
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-a', '--ann_path', default='dataset/annotations')
+    parser.add_argument('-a', '--ann_path', default='dataset/annotations.json')
     parser.add_argument('-i', '--images_path', default='dataset/images')
     parser.add_argument('-m', '--model_name', default='vgg19')
     args = parser.parse_args()
@@ -47,7 +47,7 @@ def main():
     class VizWizClassification(Dataset):
         def __init__(self, transform=None):
 
-            ann = json.load(open(os.path.join(args.ann_path,'annotations.json')))
+            ann = json.load(open(args.ann_path))
 
             all_images = list(ann.keys())
 
