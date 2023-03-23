@@ -22,7 +22,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', '--ann_path', default='dataset/annotations.json')
     parser.add_argument('-i', '--images_path', default='dataset/images')
-    parser.add_argument('-p', '--prediction_path', default='prediction')
+    parser.add_argument('-p', '--prediction_path', default='predictions')
     parser.add_argument('-m', '--model_name', default='vgg19')
     parser.add_argument('-b', '--batch_size', type=int, default='64')
 
