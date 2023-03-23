@@ -22,7 +22,7 @@ def main():
     parser.add_argument('-i', '--images_path', default='dataset/images')
     parser.add_argument('-p', '--prediction_path', default='prediction')
     parser.add_argument('-m', '--model_name', default='vgg19')
-    parser.add_argument('-b', '--batch_size', default='64')
+    parser.add_argument('-b', '--batch_size', type=int, default='64')
 
     args = parser.parse_args()
     
