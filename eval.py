@@ -104,6 +104,8 @@ def main():
     file_path = os.path.join(args.prediction_path, datetime.now().strftime("prediction-%m-%d-%Y-%H:%M:%S.json"))
     with open(file_path, 'w') as outfile:
         json.dump(results, outfile)
-
+    
+    print('Prediction file saved in', file_path)
+    
 if __name__ == '__main__':
     main()
