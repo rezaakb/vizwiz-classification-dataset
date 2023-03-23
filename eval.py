@@ -38,7 +38,7 @@ def main():
 
     class VizWizClassification(Dataset):
         def __init__(self, annotations, transform=None):
-            self.images = [os.path.join(images_path,str(path)) for path in annotations['images']]
+            self.images = [os.path.join(args.images_path,str(path)) for path in annotations['images']]
             self.transform = transform
 
         def __len__(self):
