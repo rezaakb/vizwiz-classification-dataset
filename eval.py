@@ -16,6 +16,8 @@ import torchvision.models as torch_models
 
 import timm 
 
+from tqdm import tqdm
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-a', '--ann_path', default='dataset/annotations.json')
@@ -97,7 +99,7 @@ def main():
     results = []
     
     with torch.no_grad():
-        for images, images_path in vizwiz_loader:
+        for images, images_path in tqdm(vizwiz_loader):
             images = images.to(device)
             outputs = model(images)[:,indices_in_1k]
             pred = list(outputs.data.max(1)[1].cpu())
