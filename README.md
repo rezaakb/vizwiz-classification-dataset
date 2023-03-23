@@ -9,7 +9,7 @@
 VizWiz-Classification is a new test set using 8,900 images taken by people who are blind for which we collected metadata to indicate the presence versus absence of 200 ImageNet object categories. Please read our paper to learn more:
 
 [A New Dataset Based on Images Taken by Blind People for Testing the Robustness of Image Classification Models Trained for ImageNet Categories.
-Reza Akbarian Bafghi, and Danna Gurari. arXiv, 2023.](#)
+Reza Akbarian Bafghi, and Danna Gurari. CVPR, 2023.](#)
 
 
 ## Dataset download
