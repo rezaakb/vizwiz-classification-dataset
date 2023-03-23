@@ -14,7 +14,7 @@ Reza Akbarian Bafghi, and Danna Gurari. CVPR, 2023.](#)
 
 ## Dataset download
 
-Before you can use our sample code, you must download the dataset. Links to download the images and annotations are available [here](https://vizwiz.org/tasks-and-datasets/image-classification).
+Before you can use our sample code, you must download the dataset (~20Gb). Links to download the images and annotations are available [here](https://vizwiz.org/tasks-and-datasets/image-classification).
 
 Alternatively, you can run this shell script. This will create a directory `dataset` with all the files in your current directory. This may take a while.
 ```
