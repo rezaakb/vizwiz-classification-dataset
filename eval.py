@@ -22,6 +22,8 @@ def main():
     parser.add_argument('-i', '--images_path', default='dataset/images')
     parser.add_argument('-p', '--prediction_path', default='prediction')
     parser.add_argument('-m', '--model_name', default='vgg19')
+    parser.add_argument('-b', '--batch_size', default='64')
+
     args = parser.parse_args()
     
     
@@ -51,7 +53,7 @@ def main():
             return image, self.images[idx].split("/")[2]
 
     dataset = VizWizClassification(annotations,test_transform)
-    vizwiz_loader = torch.utils.data.DataLoader(dataset,batch_size=batch_size, shuffle=False)
+    vizwiz_loader = torch.utils.data.DataLoader(dataset,batch_size=args.batch_size, shuffle=False)
 
     
     print('Dataset is loaded.')
