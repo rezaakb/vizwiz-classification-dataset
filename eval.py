@@ -96,15 +96,16 @@ def main():
     print('Model is loaded.')
     print('Testing started.')
     
-    results = []
+    results = 
     
     with torch.no_grad():
         for images, images_path in tqdm(vizwiz_loader):
             images = images.to(device)
             outputs = model(images)[:,indices_in_1k]
             pred = list(outputs.data.max(1)[1].cpu())
-            results.extend([(images_path[i],indices_in_1k[pred[i]]) for i in range(len(pred))])
-            
+            for i in range(len(pred)):
+                results[images_path[i]] = indices_in_1k[pred[i]]
+                
     file_path = os.path.join(args.prediction_path, datetime.now().strftime("prediction-%m-%d-%Y-%H:%M:%S.json"))
     with open(file_path, 'w') as outfile:
         json.dump(results, outfile)
