@@ -40,7 +40,7 @@ Or, you can set variables in this way.
 $ python eval.py --model_name vgg19 --images_path dataset/images --ann_path dataset/annotations.json --batch_size 64 --prediction_path predictions
 ```
 
-After the prediction file is generated, you should upload it to our [EvalAI](https://eval.ai/web/challenges/challenge-page/1999/overview) server for evaluation.
+After the prediction file is generated, you should upload it to our [EvalAI](https://eval.ai/web/challenges/challenge-page/1999/overview) server for evaluation. Instructions on how to do it are provided [here](https://vizwiz.org/tasks-and-datasets/image-classification).
 
 ## Citation
 
