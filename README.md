@@ -2,7 +2,7 @@
 
 # VizWiz-Classification
 
-![VizWiz-Classification Cover Image](http://drive.google.com/uc?export=view&id=17T2WF2uT2r_MfTEzub_zfU5IoSAtS2ne)
+![VizWiz-Classification Cover Image](http://drive.google.com/uc?export=view&id=1EyB5mB37DIPbZ-qbHnd3DxxK7_tqiAA3)
 
 ## Introduction
 
