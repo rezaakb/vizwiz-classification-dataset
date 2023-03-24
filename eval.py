@@ -96,7 +96,7 @@ def main():
     print('Model is loaded.')
     print('Testing started.')
     
-    results = 
+    results = {}
     
     with torch.no_grad():
         for images, images_path in tqdm(vizwiz_loader):
