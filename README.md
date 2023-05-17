@@ -46,10 +46,12 @@ After the prediction file is generated, you should upload it to our [EvalAI](htt
 
 If you make use of our dataset for your research, please be sure to cite our work with the following BibTeX citation.
 ```
- @article{VWC2023,
-  title={A New Dataset Based on Images Taken by Blind People for Testing the Robustness of Image Classification Models Trained for ImageNet Categories},
-  author={Akbarian Bafghi, Reza and Gurari, Danna},
-  journal={2023 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-  year={2023}
- } 
+@InProceedings{Bafghi_2023_CVPR,
+    author    = {Bafghi, Reza Akbarian and Gurari, Danna},
+    title     = {A New Dataset Based on Images Taken by Blind People for Testing the Robustness of Image Classification Models Trained for ImageNet Categories},
+    booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+    month     = {June},
+    year      = {2023},
+    pages     = {16261-16270}
+}
 ```
