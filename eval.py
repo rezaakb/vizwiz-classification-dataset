@@ -62,34 +62,6 @@ def main():
     
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-
-    def train(model, vizwiz_loader):
-
-        correct = np.zeros(8)
-        total = np.zeros(8)
-
-        with torch.no_grad():
-
-            for images, labels, flaws in vizwiz_loader:
-
-                images = images.to(device)
-                labels = labels.to(device)
-
-                outputs = model(images)[:,indices_in_1k]
-
-                pred = outputs.data.max(1)[1]
-
-                tmp = labels.gather(1, pred.unsqueeze(1))
-
-                correct[7] += tmp.sum()
-                total[7] += tmp.size(0)
-
-                for j in range(7):
-                    correct[j] += tmp[flaws[:,j]].sum()
-                    total[j] += (flaws[:,j]).sum()
-
-        return correct/total
-
     model = timm.create_model(args.model_name, pretrained=True).to(device)
     model.eval()
     
